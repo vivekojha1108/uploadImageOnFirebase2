@@ -56,7 +56,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
             View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
         TextView textViewName;
         ImageView imageView;
-        private OnItemClickListener mListener;
+         OnItemClickListener mListener;
 
         ImageViewHolder(View itemView) {
             super(itemView);
@@ -67,9 +67,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
             itemView.setOnClickListener(this);
             itemView.setOnCreateContextMenuListener(this);
         }
-        //constructer end here
+        //Constructer ImageViewHolder ends here
 
-        //onclicklistener on itemView stats here
+        //onClickListener on itemView stats here
         @Override
         public void onClick(View v) {
 
@@ -96,7 +96,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
             if (mListener != null) {
                 int position = getAdapterPosition();
                 if (position != RecyclerView.NO_POSITION) {
-
                     switch (item.getItemId()) {
                         case 1:
                             mListener.onWhatEverClick(position);
@@ -108,8 +107,6 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
                 }
             }
             return false;
-
-
         }
     }
 
@@ -127,11 +124,9 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHol
         void onDeleteClick(int position);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener){
+    void setOnItemClickListener(OnItemClickListener listener){
         mListener = listener;
     }
-
-
 
 
 }
