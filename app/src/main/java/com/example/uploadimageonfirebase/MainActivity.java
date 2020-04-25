@@ -112,7 +112,8 @@ public class MainActivity extends AppCompatActivity {
             mImageUri = data.getData();
 
             //changed in methods by picasso library
-           Picasso.get().load(mImageUri).into(mImageView);
+           Picasso.get().load(mImageUri)
+                   .into(mImageView);
 //            mImageView.setImageURI(mImageUri);
         }
     }
@@ -141,27 +142,26 @@ public class MainActivity extends AppCompatActivity {
                                 public void run() {
                                     mProgressBar.setProgress(0);
                                 }
-                            }, 700);
+                            }, 500);
 
                             Toast.makeText(MainActivity.this, "Upload successful", Toast.LENGTH_LONG).show();
 
 
-                            Upload upload = new Upload(mEditTextFileName.getText().toString().trim(), taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
+//                            Upload upload = new Upload(mEditTextFileName.getText().toString().trim(), taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
+//                            String uploadId = mDatabaseRef.push().getKey();
+//                            mDatabaseRef.child(uploadId).setValue(upload);
+
+                            /* This code is working fine.*/
+
+                            Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
+                            while (!urlTask.isSuccessful());
+                            Uri downloadUrl = urlTask.getResult();
+
+                            //Log.d(TAG, "onSuccess: firebase download url: " + downloadUrl.toString()); //use if testing...don't need this line.
+                            Upload upload = new Upload(mEditTextFileName.getText().toString().trim(),downloadUrl.toString());
+
                             String uploadId = mDatabaseRef.push().getKey();
                             mDatabaseRef.child(uploadId).setValue(upload);
-
-
-//                            Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
-
-//                            while (!urlTask.isSuccessful());
-//
-//                            Uri downloadUrl = urlTask.getResult();
-//
-//                            Upload upload = new Upload(mEditTextFileName.getText().toString().trim(),downloadUrl.toString());
-//
-//                            String uploadId = mDatabaseRef.push().getKey();
-//
-//                            mDatabaseRef.child(uploadId).setValue(upload);
 
 
 
