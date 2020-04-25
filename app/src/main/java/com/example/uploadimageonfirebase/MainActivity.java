@@ -33,7 +33,6 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
-    //FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     private static final int PICK_IMAGE_REQUEST = 1;
 
@@ -190,8 +189,5 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ImageActivity.class);
         startActivity(intent);
     }
-
-
-
 
 }
